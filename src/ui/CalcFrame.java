@@ -1,10 +1,10 @@
 package ui;
 
 import java.awt.*;
-import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import controller.CalcController;
 import ui.panels.ButtonPanel;
 import ui.panels.ClearButton;
 import ui.panels.TextPanel;
@@ -45,9 +45,10 @@ public class CalcFrame extends JFrame {
 
         // unfortunately yes you do need to pass in TextPanel to
         // actually change the text
+        CalcController calcController = new CalcController();
         TextPanel textPanel = new TextPanel(16);
-        ButtonPanel buttonPanel = new ButtonPanel(textPanel);
-        ClearButton clearButton = new ClearButton(textPanel);
+        ButtonPanel buttonPanel = new ButtonPanel(textPanel, calcController);
+        ClearButton clearButton = new ClearButton(textPanel, calcController);
 
         panel.add(textPanel, this.getGBC(0, 1));
         panel.add(buttonPanel, this.getGBC(0, 2));
