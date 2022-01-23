@@ -6,7 +6,7 @@ import javax.swing.JPanel;
 
 import controller.CalcController;
 import ui.panels.ButtonPanel;
-import ui.panels.ClearButton;
+import ui.panels.ClearPanel;
 import ui.panels.TextPanel;
 
 public class CalcFrame extends JFrame {
@@ -48,11 +48,11 @@ public class CalcFrame extends JFrame {
         CalcController calcController = new CalcController();
         TextPanel textPanel = new TextPanel(16);
         ButtonPanel buttonPanel = new ButtonPanel(textPanel, calcController);
-        ClearButton clearButton = new ClearButton(textPanel, calcController);
+        ClearPanel clearPanel = new ClearPanel(textPanel, calcController);
 
         panel.add(textPanel, this.getGBC(0, 1));
         panel.add(buttonPanel, this.getGBC(0, 2));
-        panel.add(clearButton, this.getGBC(0, 3));
+        panel.add(clearPanel, this.getGBC(0, 3));
     }
 
     private GridBagConstraints getGBC(int x, int y){

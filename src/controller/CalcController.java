@@ -5,9 +5,18 @@ public class CalcController {
     private double register2 = 0;
     private String operator = "";
     private boolean goToSecondReg = false;
+    private boolean previousCharWasEquals = false;
 
     public boolean isFirstRegPopulated(){
-        return goToSecondReg;
+        return this.goToSecondReg;
+    }
+
+    public void setPreviousCharWasEquals(boolean b){
+        this.previousCharWasEquals = b;
+    }
+
+    public boolean getPreviousCharWasEquals(){
+        return this.previousCharWasEquals;
     }
 
     public double getReg1(){
@@ -33,6 +42,7 @@ public class CalcController {
 
     public void setOp(String s){
         this.operator = s;
+        this.setPreviousCharWasEquals(false);
     }
 
     public double performOperation(){
@@ -53,5 +63,13 @@ public class CalcController {
                 return register1;
         }
         return register1;
+    }
+
+    public void resetAll(){
+        this.register1 = 0;
+        this.register2 = 0;
+        this.operator = "";
+        this.goToSecondReg = false;
+        this.previousCharWasEquals = false;
     }
 }

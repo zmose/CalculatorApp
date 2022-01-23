@@ -22,6 +22,7 @@ public class OpListener implements ActionListener{
         if(operator.equals("=")){
             this.textPanel.setText(Double.toString(this.calcController.performOperation()));
             this.textPanel.setIsReadyToReset(true);
+            this.calcController.setPreviousCharWasEquals(true);
             return;
         }
 
@@ -30,7 +31,7 @@ public class OpListener implements ActionListener{
     }
 
     private void populateReg(String register){
-        if(calcController.isFirstRegPopulated()){
+        if(calcController.isFirstRegPopulated() && !calcController.getPreviousCharWasEquals()){
             calcController.setReg2(register);
         }
         else {

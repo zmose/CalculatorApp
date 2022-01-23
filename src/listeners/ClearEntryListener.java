@@ -3,9 +3,9 @@ package listeners;
 import java.awt.event.*;
 import ui.panels.TextPanel;
 
-public class ClearListener implements ActionListener{
+public class ClearEntryListener implements ActionListener{
     TextPanel textPanel;
-    public ClearListener(TextPanel textPanel){
+    public ClearEntryListener(TextPanel textPanel){
         this.textPanel = textPanel;
     }
 
