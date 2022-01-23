@@ -19,6 +19,8 @@ public class OpListener implements ActionListener{
 
         String operator = e.getActionCommand();
 
+        // if the operation is '=', we want to actually perform the action
+        // and send the result to the textPanel
         if(operator.equals("=")){
             this.textPanel.setText(Double.toString(this.calcController.performOperation()));
             this.textPanel.setIsReadyToReset(true);
@@ -27,9 +29,18 @@ public class OpListener implements ActionListener{
         }
 
         calcController.setOp(operator);  
-        this.textPanel.resetText();
+        this.textPanel.setIsReadyToReset(true);
     }
 
+    /**
+     * Populates either register 1 or 2 based on bits inside the controller:
+     * 
+     * If the first bit is already populated AND the previous character was NOT '=',
+     * populate register 2.
+     * 
+     * Otherwise, populate register 1. 
+     * @param register
+     */
     private void populateReg(String register){
         if(calcController.isFirstRegPopulated() && !calcController.getPreviousCharWasEquals()){
             calcController.setReg2(register);

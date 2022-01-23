@@ -18,6 +18,14 @@ public class ClearPanel extends JPanel{
         this.add(clearAllButton, this.getGBC(2, 0));
     }
 
+    /**
+     * Same as the getGBC found in the CalcFrame class. 
+     * 
+     * If there is more overlap in the future I could make a utils file.
+     * @param x
+     * @param y
+     * @return
+     */
     private GridBagConstraints getGBC(int x, int y){
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.anchor = GridBagConstraints.NORTH;
@@ -28,6 +36,11 @@ public class ClearPanel extends JPanel{
         return gbc;
     }
 
+    /**
+     * Creates the "Clear Entry" button and attaches its listener.
+     * @param textPanel
+     * @return
+     */
     private JButton createClearEntryButton(TextPanel textPanel){
         JButton clearEntryButton = new JButton("Clear Entry");
         ClearEntryListener clearEntryListener = new ClearEntryListener(textPanel);
@@ -35,6 +48,12 @@ public class ClearPanel extends JPanel{
         return clearEntryButton;
     }
 
+    /**
+     * Creates the "Clear All" button and attaches its listener.
+     * @param textPanel
+     * @param calcController
+     * @return
+     */
     private JButton createClearAllButton(TextPanel textPanel, CalcController calcController) {
         JButton clearAllButton = new JButton("Clear All");
         ClearAllListener clearAllListener = new ClearAllListener(textPanel, calcController);
