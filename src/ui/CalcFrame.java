@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import ui.panels.ButtonPanel;
+import ui.panels.ClearButton;
 import ui.panels.TextPanel;
 
 public class CalcFrame extends JFrame {
@@ -13,7 +14,7 @@ public class CalcFrame extends JFrame {
 
     public CalcFrame() {
         JPanel mainPanel = this.createParentPanel(NUMBER_OF_VERTICAL_PANELS);
-        this.add(mainPanel);
+        this.add(mainPanel, BorderLayout.CENTER);
         this.createFrame();
     }
     /**
@@ -34,11 +35,32 @@ public class CalcFrame extends JFrame {
      */
     private JPanel createParentPanel(int numberOfPanels){
         JPanel panel = new JPanel();
-        panel.setBorder(BorderFactory.createEmptyBorder(100, 100, 100, 100));
-        panel.setLayout(new GridLayout(numberOfPanels, 1));
-        panel.add(new TextPanel(16), 0, 0);
-        panel.add(new ButtonPanel());
+        panel.setLayout(new GridBagLayout());
+        this.addSubPanels(panel);
         return panel;
 
+    }
+
+    private void addSubPanels(JPanel panel) {
+
+        // unfortunately yes you do need to pass in TextPanel to
+        // actually change the text
+        TextPanel textPanel = new TextPanel(16);
+        ButtonPanel buttonPanel = new ButtonPanel(textPanel);
+        ClearButton clearButton = new ClearButton(textPanel);
+
+        panel.add(textPanel, this.getGBC(0, 1));
+        panel.add(buttonPanel, this.getGBC(0, 2));
+        panel.add(clearButton, this.getGBC(0, 3));
+    }
+
+    private GridBagConstraints getGBC(int x, int y){
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.anchor = GridBagConstraints.NORTH;
+        gbc.weighty = 1;
+        gbc.gridx = x;
+        gbc.gridy = y;
+        gbc.insets = new Insets(10, 2, 10, 2);
+        return gbc;
     }
 }
